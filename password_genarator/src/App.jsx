@@ -1,4 +1,4 @@
-import { useCallback, useState, useEffect } from 'react'
+import { useCallback, useState, useEffect, useRef } from 'react'
 import './App.css'
 
 
@@ -14,12 +14,12 @@ function App() {
 
     if (num_allowed) t_char += "1234567890"
     if (char_allowed) t_char += "!@#$%&*(){}:<>?,./;'[]</>"
-    let index
-    for (let i = 0; i < len; i++) {
-       //index= Math.floor(Math.random() * t_char.length + 1);
-  
-      word += t_char.charAt(i);
 
+    for (let i = 1; i <= len; i++) {
+      let index = Math.floor(Math.random() * t_char.length + 1);
+
+      word += t_char.charAt(index);
+      console.log(word);
     }
 
     setPass_allowed(word);
@@ -43,9 +43,19 @@ function App() {
   }
     , [len, num_allowed, char_allowed, Pass_allowed]);
 
+  let Pass_Ref = useRef(null)
+  const copyClipBoard = useCallback(() => {
+    Pass_Ref.current?.select()
+    Pass_Ref.current?.setSelectionRange(0,4)
+    window.navigator.clipboard.writeText(Pass_allowed)
+
+
+
+  }, [Pass_allowed])
+
   useEffect(() => {
     passwordGenarator()
-  }, [len, num_allowed, char_allowed, Pass_allowed, passwordGenarator])
+  }, [len, num_allowed, char_allowed])
 
   return (
     <>
@@ -62,10 +72,12 @@ function App() {
             placeholder='Password'
             readOnly
             value={Pass_allowed}
+            ref={Pass_Ref}
           />
           <button
-            className='outline-none bg-black text-white px-3 py-0.5 shrink-0  rounded-md mx-1
-        '>Copy</button>
+            onClick={copyClipBoard}
+            className="bg-green-500 hover:bg-green-700 active:bg-green-300 text-white font-bold py-2 px-4 rounded shadow-md transition duration-300 ease-in-out cursor-pointer"
+        >Copy</button>
         </div>
 
         <div className='flex text-sm gap-x-2'>
@@ -91,7 +103,9 @@ function App() {
               type="checkbox"
               id='numberInput'
               defaultChecked={num_allowed}
-
+              onChange={() => {
+                setNum_allowed((prev) => !prev)
+              }}
             />
             <label htmlFor='numberInput'>Numbers</label>
           </div>
