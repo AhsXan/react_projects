@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 // https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@2024-06-20/v1/currencies.json
-function useCurrencyInfo(currency) {
+function CurrencyInfo(currency) {
     const [data, setData] = useState({})
 
 
@@ -16,7 +16,7 @@ function useCurrencyInfo(currency) {
     retuen[data]
 }
 
-export default useCurrencyInfo;
+export default CurrencyInfo;
 
 // function useCurrencyInfo(){
 // const [data,setData]= useState({})
