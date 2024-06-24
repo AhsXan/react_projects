@@ -2,7 +2,7 @@ import React, { useId } from "react";
 
 
 
-function Input({
+function _Input({
     label,
     amount,
     onAmountChange,
@@ -11,15 +11,15 @@ function Input({
     selectCurrency = 'usd',
     amountDisable = false,
     currencyDisable = false,
-    className = "",
-})
+ 
+})  {
 
 
 return (
     <div className={`bg-white p-3 rounded-lg text-sm flex `}>
         <div className="w-1/2">
             <label className="text-black/40 mb-2 inline-block">
-                label
+                {label}
             </label>
             <input
 
@@ -56,6 +56,6 @@ return (
         </div>
     </div>
 );
+}
 
-
-export default Input;
+export default _Input
