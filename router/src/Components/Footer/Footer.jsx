@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
 
-function Header(props) {
+function Footer(props) {
     return (
         <div>
             
@@ -9,4 +9,4 @@ function Header(props) {
     );
 }
 
-export default Header;
+export default Footer;
