@@ -1,14 +1,19 @@
 //import { useState } from 'react'
-
+import Header from './Components/Header/Header'
 import './App.css'
+import Footer from './Components/Footer/Footer'
+import Home from './Components/Home/Home'
 
 function App() {
   //const [count, setCount] = useState(0)
   return (
     <>
-      <h1 className='bg-gray-400 p-4 '>Saad Suleman </h1>
+    <Header/>
+    <Home/>
+    <Footer/>
     </>
   )
 } 
+
 
 export default App
