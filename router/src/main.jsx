@@ -1,33 +1,56 @@
 //import React from 'react'
-import ReactDOM from 'react-dom/client'
-// eslint-disable-next-line no-unused-vars
-import App from './App.jsx'
-import './index.css'
-import { RouterProvider, createBrowserRouter } from 'react-router-dom'
-import Layout from './Layout.jsx'
-import Home from './Components/Home/Home.jsx'
-// eslint-disable-next-line no-unused-vars
-import About from './Components/About/About.jsx'
-const router =createBrowserRouter([
-    {
-        path:'/', 
-        element: <Layout/>,
-        children:[
-            {
-                path:"",
-                element:<Home/>
+/* eslint-disable no-unused-vars */
+import ReactDOM from "react-dom/client";
 
-            },{
+import App from "./App.jsx";
+import "./index.css";
+import {
+  BrowserRouter,
+  Route,
+  RouterProvider,
+  createBrowserRouter,
+  createRoutesFromElements,
+} from "react-router-dom";
+import Layout from "./Layout.jsx";
+import Home from "./Components/Home/Home.jsx";
+import About from "./Components/About/About.jsx";
+import Contact from "./Components/Contact/Contact.jsx";
 
-                path:"About",
-                element:<About/>
-            }
-        ]
-    }
-])
+import UserID from "./Components/User/UserID.jsx";
 
-ReactDOM.createRoot(document.getElementById('root')).render(
 
-    <RouterProvider router={router} />
-  
-)
+// const router =createBrowserRouter([
+//     {
+//         path:'/',
+//         element: <Layout/>,
+//         children:[
+//             {
+//                 path:"",
+//                 element:<Home/>
+
+//             },{
+
+//                 path:"About",
+//                 element:<About/>
+//             },
+//             {
+//                 path:"Contact",
+//                 element:<Contact/>
+//             }
+//         ]
+//     }
+// ])
+
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route path="/" element={<Layout />}>
+      <Route path="" element={<Home />} />
+      <Route path="About" element={<About />} />
+      <Route path="Contact" element={<Contact />} />
+      <Route path="UserID/:userID" element={<UserID />} />
+    </Route>
+  )
+);
+ReactDOM.createRoot(document.getElementById("root")).render(
+  <RouterProvider router={router} />
+);
