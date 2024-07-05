@@ -58,7 +58,7 @@ function Header() {
               </li>
             
           
-              <li>
+               <li>
                 <NavLink
                   to="/Contact"
                   className={({ isActive }) =>
@@ -69,6 +69,18 @@ function Header() {
                 >
                   Contact
                 </NavLink>
+                </li>
+                <li>
+                <NavLink
+                  to="/Github"
+                  className={({ isActive }) =>
+                    `block py-2 pr-4 ${
+                      isActive ? "text-orange-700" : "text-gray-700"
+                    } pl- duration-200 border-b border-gray-100 hover:bg-gray-50 hover:text-orange-700 lg:hover:bg-transparent lg:border-0 lg:p-0`
+                  }
+                >
+                  Github
+                </NavLink>    
               </li>
             </ul>
           </div>
