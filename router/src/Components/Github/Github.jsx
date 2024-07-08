@@ -30,3 +30,8 @@ export const githubInfoLoader= async()=>{
 const response = await fetch('https://api.github.com/users/msufyan634')
 return response.json()
 }
+
+// React Router, a loader function is a special type of function that's used to preload data for a route.
+//  When a user navigates to a route,
+//   React Router will call the associated loader function to fetch the necessary data,
+//    and then pass that data as an argument to the route's component using the useLoaderData hook.
