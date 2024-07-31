@@ -1,31 +1,70 @@
 /* eslint-disable no-unused-vars */
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import "./App.css";
 import { TodoProvider } from "./context";
 
 function App() {
-  const [todos, setTodos] = useState([]);
-  const addTodo = (todo) => {
-    //setTodos((prev)=> [...prev,{id: Date.now()}])
-    setTodos((prev) => {
-      return { todos: [...prev, { id: Date.now() }] };
-    });
-  };
-    const updateTodo = (id, todo) => {
-      setTodos((prev) =>
-        prev.map((prevTodo) => (prevTodo.id === id ? todo : prevTodo))
-      );
-    };
+  // const [todos, setTodos] = useState([]);
+  // const addTodo = (todo) => {
+  //   //setTodos((prev)=> [...prev,{id: Date.now()}])
+  //   setTodos((prev) => {
+  //     return { todos: [...prev, { id: Date.now() }] };
+  //   });
+  // };
+  //   const updateTodo = (id, todo) => {
+  //     setTodos((prev) =>
+  //       prev.map((prevTodo) => (prevTodo.id === id ? todo : prevTodo))
+  //     );
+  //   };
 
-    const deleteTodo = (id) => {
-    setTodos((prev) => prev.filter((prevTodo) => prevTodo.id !== id));
-    };
+  //   const deleteTodo = (id) => {
+  //   setTodos((prev) => prev.filter((prevTodo) => prevTodo.id !== id));
+  //   };
   
+  const [todos,setTodos]=useState([]);
+
+  const addTodo=(todo)=>{
+
+    setTodos((prev)=> [...prev,{id:Date.now()}])
+  }
+
+  const updateTodo=(todo,id)=>{
+
+    setTodos((prev)=>{
+      prev.map((prevTodo)=> prevTodo.id===id?todo:prevTodo)
+    })
+  }
+
+  const deleteTodo=(id)=>{
+    setTodos((prev)=>{
+      prev.filter((prevTodo)=> prevTodo.id!==id )
+
+    })
+  }
+
+const toggleComplete=(id)=>{
+  setTodos((prev)=>{
+    prev.map((obj) => obj===id ? {...obj,completed:!obj.completed}:  obj)})}
+//prev.forEach((obj) => obj.id===id ? !obj.completed:obj)})
+
+useEffect(() => {
+const  todos= JSON.parse(localStorage.getItem("todos"))
+
+if(todos&&  todos.length>0){
+
+  setTodos(todos);
+}
+
+}, [])
+
+useEffect(()=>{
+  localStorage.setItem("todos", JSON.stringify(todos))
+},[todos])
 
   return (
     <>
-      <TodoProvider value={{ todos, updateTodo, addTodo, deleteTodo }}>
+      <TodoProvider value={{ todos, updateTodo, addTodo, deleteTodo ,toggleComplete}}>
         <div className="bg-[#172842] min-h-screen py-8">
           <div className="w-full max-w-2xl mx-auto shadow-md rounded-lg px-4 py-3 text-white">
             <h1 className="text-2xl font-bold text-center mb-8 mt-2">
