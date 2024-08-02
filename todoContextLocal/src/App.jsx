@@ -93,7 +93,7 @@ function App() {
                console.log("hh =", todos);
                 return (
                   <div key={todo.id} className="w-full">
-                    <TodoItem todo={{todo}} />
+                    <TodoItem todo={todo} />
                   </div>
                 );
               })}
