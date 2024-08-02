@@ -37,16 +37,26 @@ function App() {
   };
 
   const deleteTodo = (id) => {
+    
     setTodos((prev) => {
-      prev.filter((prevTodo) => prevTodo.id !== id);
-    });
-  };
+      return prev.filter((prevTodo) =>
+      
+          {console.log("Con = ",prevTodo.id)
+        return  prevTodo.id !== id})
+    ;
+      }
+      )
+      }
 
-  const toggleComplete = (id) => {
+  const toggleCompleted = (id) => {
+    console.log("Toggle=  ",id)
     setTodos((prev) => {
-      prev.map((obj) =>
-        obj.id === id ? { ...obj, completed: !obj.completed } : obj
-      );
+
+      console.log("Prev  = ",prev);
+     return prev.map((obj) =>
+       obj.id === id ? {...obj,completed: !obj.completed } : obj
+      //obj.id === id ? console.log("If = ",!obj.completed):console.log("Else = ",obj)  
+    );
     });
   };
   //prev.forEach((obj) => obj.id===id ? !obj.completed:obj)})
@@ -66,7 +76,7 @@ function App() {
   return (
     <>
       <TodoProvider
-        value={{ todos, updateTodo, addTodo, deleteTodo, toggleComplete }}
+        value={{ todos, updateTodo, addTodo, deleteTodo, toggleCompleted }}
       >
         <div className="bg-[#172842] min-h-screen py-8">
           <div className="w-full max-w-2xl mx-auto shadow-md rounded-lg px-4 py-3 text-white">
@@ -80,10 +90,10 @@ function App() {
             <div className="flex flex-wrap gap-y-3">
               {/*Loop and Add TodoItem here */}
               {todos.map((todo) => {
-               // console.log("hh =", todo);
+               console.log("hh =", todos);
                 return (
                   <div key={todo.id} className="w-full">
-                    <TodoItem todo={todo} />
+                    <TodoItem todo={{todo}} />
                   </div>
                 );
               })}

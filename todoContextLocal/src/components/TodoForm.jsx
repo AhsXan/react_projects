@@ -21,7 +21,7 @@ const  add= (e)=>{
     setTodo("")
 }
 
-//,
+
     return (
         <form onSubmit={add} className="flex">
             <input
